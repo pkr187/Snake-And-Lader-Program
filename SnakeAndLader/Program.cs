@@ -5,8 +5,7 @@
         static void Main(string[] args)
         {
             Game game = new Game();
-            game.DiceRoll();
-            Console.WriteLine(game.DiceRoll());
+            game.Play();
         }
     }
 }
