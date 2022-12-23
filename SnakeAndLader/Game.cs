@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace SnakeAndLader
 {
-    public class Game
+    internal class Game
     {
         public int playerPosition = 0;
-        const int NO_PLAY = 0, LADDER = 1, SNAKE = 2;
+        const int NO_PLAY = 0, LADDER = 1, SNAKE = 2, WINNING_POSITION = 100;
         Random random = new Random();
-        public int DiceRoll()
+        public int DieRoll()
         {
-            int diceCount = random.Next(1, 7);
-            return diceCount;
+            int dieCount = random.Next(1, 7);
+            return dieCount;
         }
         public void Play()
         {
@@ -27,10 +27,14 @@ namespace SnakeAndLader
                         playerPosition += 0;
                         break;
                     case LADDER:
-                        playerPosition += DiceRoll();
+                        playerPosition += DieRoll();
+                        if (playerPosition > 100)
+                        {
+                            playerPosition -= DieRoll();
+                        }
                         break;
                     case SNAKE:
-                        playerPosition -= DiceRoll();
+                        playerPosition -= DieRoll();
                         if (playerPosition < 0)
                         {
                             playerPosition = 0;
@@ -38,7 +42,10 @@ namespace SnakeAndLader
                         break;
                 }
             }
-            Console.WriteLine(playerPosition);
+            if (playerPosition == WINNING_POSITION)
+            {
+                Console.WriteLine(playerPosition);
+            }
         }
     }
 }

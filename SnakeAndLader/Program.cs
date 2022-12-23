@@ -1,11 +1,11 @@
 ﻿namespace SnakeAndLader
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Game game = new Game();
-            game.Play();
+            Game player = new Game();
+            player.Play();
         }
     }
 }
