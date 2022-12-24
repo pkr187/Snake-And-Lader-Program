@@ -8,13 +8,15 @@ namespace SnakeAndLader
 {
     internal class Game
     {
-        public int playerPosition = 0;
+        public int playerPosition = 0, count = 0;
         const int NO_PLAY = 0, LADDER = 1, SNAKE = 2, WINNING_POSITION = 100;
         Random random = new Random();
-        public int DieRoll()
+        public int DiceRoll()
         {
-            int dieCount = random.Next(1, 7);
-            return dieCount;
+            count++;
+            int diceCount = random.Next(1, 7);
+            Console.WriteLine("Die Roll Value" + "-" + count + "\nPlayer Position" + "-" + playerPosition);
+            return diceCount;
         }
         public void Play()
         {
@@ -27,14 +29,14 @@ namespace SnakeAndLader
                         playerPosition += 0;
                         break;
                     case LADDER:
-                        playerPosition += DieRoll();
+                        playerPosition += DiceRoll();
                         if (playerPosition > 100)
                         {
-                            playerPosition -= DieRoll();
+                            playerPosition -= DiceRoll();
                         }
                         break;
                     case SNAKE:
-                        playerPosition -= DieRoll();
+                        playerPosition -= DiceRoll();
                         if (playerPosition < 0)
                         {
                             playerPosition = 0;
